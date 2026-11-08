@@ -1,3 +1,18 @@
 spring:
   application:
     name: discovery-server
+
+# The registry is the first piece to start, so its configuration lives here and not in the
+# Config Server. It has no secrets.
+server:
+  port: ${EUREKA_PORT:8761}
+
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
+  client:
+    # A single registry: it does not register with itself nor copy a peer's registry.
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

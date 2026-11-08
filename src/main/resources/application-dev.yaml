@@ -1,0 +1,9 @@
+# Local development, where services start and stop all the time: a stopped service leaves
+# the registry within seconds, and a new one is visible to the gateway at once. Do not use
+# these values with real traffic: self-preservation protects the registry from network
+# failures that look like mass shutdowns.
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+    use-read-only-response-cache: false
